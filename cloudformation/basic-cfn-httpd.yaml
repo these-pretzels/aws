@@ -1,0 +1,70 @@
+---
+  Description: "A template to create an ec2 instance"
+  Parameters:
+      KeyPair: 
+        Description: "EC2 keypair to allow ssh to the instance"
+        Type: "String"
+      ImageId: 
+        Description: "The image id for the instance"
+        Type: "String"
+      SSHLocation:
+        Description: "Allow ssh to the instance"
+        Type: "String"
+      PublicSubnet: 
+        Description: "Public subnet to launch the instance"
+        Type: "AWS::EC2::Subnet::Id"
+      VpcId: 
+        Description: "VpcId for the SG"
+        Type: "AWS::EC2::VPC::Id"
+  Resources:
+    InstanceSecurityGroup:
+        Type: "AWS::EC2::SecurityGroup"
+        Properties:
+          VpcId:
+            Ref: "VpcId"
+          GroupDescription: "Enable SSH access via port 22"
+          SecurityGroupIngress:
+            -
+              IpProtocol: "tcp"
+              FromPort: "22"
+              ToPort: "22"
+              CidrIp: 
+                Ref: "SSHLocation"
+            - 
+              IpProtocol: "tcp"
+              FromPort: "80"
+              ToPort: "80"
+              CidrIp: "0.0.0.0/0"
+    Ec2Instance: 
+        Type: "AWS::EC2::Instance"
+        Properties: 
+          KeyName:
+            Ref: 'KeyPair'
+          ImageId:
+            Ref: "ImageId"
+          InstanceType: t2.micro
+          Tags:
+            -          
+              Key: Name
+              Value: Cfn instance
+          UserData:
+            Fn::Base64: |
+                #!/bin/bash
+                  sudo yum update -y
+                  sudo yum -y install httpd
+                  sudo systemctl start httpd
+                  sudo systemctl enable httpd
+
+          NetworkInterfaces:      
+            - AssociatePublicIpAddress: "true"
+              DeviceIndex: "0"
+              GroupSet: 
+                - Ref: "InstanceSecurityGroup"
+              SubnetId: 
+                Ref: "PublicSubnet"    
+  Outputs:
+   InstanceId: 
+      Description: "The InstanceId of the newly created EC2 instance"
+      Value: 
+        Ref: "Ec2Instance"
+  AWSTemplateFormatVersion: "2010-09-09"
