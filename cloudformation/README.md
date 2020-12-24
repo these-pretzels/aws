@@ -15,7 +15,7 @@
 Place to document my aws learning process.
 
 ## Screenshots
-![Example screenshot](./img/screenshot.png)
+![screenshot](/img/screenshot.png)
 
 ## Technologies
 * AWS CloudFormation
