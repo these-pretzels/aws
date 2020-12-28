@@ -3,14 +3,8 @@
 
 ## Contents
 * [Basic httpd webpage](#basic-httpd-webpage)
-* [Technologies](#technologies)
-* [Setup](#setup)
-* [Features](#features)
-* [Contact](#contact)
 
 ## Basic httpd webpage
-* [Basic httpd webpage yaml template](../cloudformation/basic-cfn-httpd.yaml)
-* ![screenshot](/img/screenshot.png)
-
-## Contact
-Created by these-pretzels (feel free to contact me)
+[Basic httpd webpage yaml template](../cloudformation/basic-cfn-httpd.yaml)  
+Screenshot of the webpage  
+![screenshot](/img/screenshot.png)
