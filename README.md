@@ -1,7 +1,5 @@
-# aws
-All things aws related. A place to document all the things I've learned about aws.
+# AWS
+All things AWS related. A place to document all the things I've learned about Amazon Web Services.
 
-* Images are in the /img folder
-* AWS CloudFormation templates are in the /cloudformation folder
-
-Will continue to update this page as I go.
+* [AWS CloudFormation](/aws/cloudformation)
+* [Images](/aws/img)
