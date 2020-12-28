@@ -1,5 +1,5 @@
 # AWS CloudFormation
-> A place to document my learning progress. Using the free tier in aws to help learn as I go.
+> Place to upload my code and CloudFormation learning progress.
 
 ## Contents
 * [Basic httpd webpage](#basic-httpd-webpage)
